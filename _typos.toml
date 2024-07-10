@@ -1,4 +1,9 @@
 [default.extend-words]
 
 [files]
-extend-exclude = ["CHANGELOG.md", "notebooks/*", "crm/crm.yml"]
+extend-exclude = [
+    "CHANGELOG.md",
+    "notebooks/*",
+    "crm/crm.yml",
+    "fixtures/token",
+]

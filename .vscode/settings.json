@@ -3,5 +3,8 @@
     "options": [
       "--proto_path=protos",
     ]
-  }
+  },
+  "CodeGPT.Autocomplete.enabled": true,
+  "CodeGPT.apiKey": "Ollama",
+  "CodeGPT.Autocomplete.provider": "CodeGPT Plus - Plus"
 }

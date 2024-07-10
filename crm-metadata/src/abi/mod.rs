@@ -1,3 +1,4 @@
+use core::fmt;
 use std::collections::HashSet;
 
 use crate::{
@@ -61,13 +62,19 @@ impl Content {
     }
 }
 
-pub struct Tpl<'a>(pub &'a [Content]);
-
-impl<'a> Tpl<'a> {
-    pub fn to_body(&self) -> String {
-        format!("Tpl: {:?}", self.0)
+impl<'a> fmt::Display for Tpl<'a> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Tpl: {:?}", self.0)
     }
 }
+
+pub struct Tpl<'a>(pub &'a [Content]);
+
+// impl<'a> Tpl<'a> {
+//     pub fn to_body(&self) -> String {
+//         format!("Tpl: {:?}", self.0)
+//     }
+// }
 
 impl MaterializeRequest {
     pub fn new_with_ids(ids: &[u32]) -> impl Stream<Item = Self> {

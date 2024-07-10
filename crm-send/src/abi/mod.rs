@@ -3,7 +3,6 @@ mod in_app;
 mod sms;
 
 use chrono::Utc;
-use crm_metadata::{pb::Content, Tpl};
 use futures::{Stream, StreamExt};
 use prost_types::Timestamp;
 use std::{ops::Deref, sync::Arc, time::Duration};
@@ -76,19 +75,14 @@ impl Deref for NotificationService {
 }
 
 impl SendRequest {
-    pub fn new(
-        subject: String,
-        sender: String,
-        recipients: &[String],
-        contents: &[Content],
-    ) -> Self {
-        let tpl = Tpl(contents);
+    pub fn new(subject: String, sender: String, recipients: &[String], content: &str) -> Self {
+        //let tpl = Tpl(contents);
         let msg = Msg::Email(EmailMessage {
             message_id: Uuid::new_v4().to_string(),
             subject,
             sender,
             recipients: recipients.to_vec(),
-            body: tpl.to_body(),
+            body: content.to_string(),
         });
 
         SendRequest { msg: Some(msg) }
